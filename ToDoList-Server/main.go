@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/catechlounge/Go-list/model"
-	"github.com/catechlounge/Go-list/router"
-	"github.com/labstack/echo/v4"
+	"github.com/Takumi-666/ToDoList-Server/model"
+	"github.com/Takumi-666/ToDoList-Server/router"
+    "github.com/labstack/echo/v4"
 )
 
 func main() {
