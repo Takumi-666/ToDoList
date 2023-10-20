@@ -1,4 +1,4 @@
-module github.com/Takumi-666/ToDoList-Server
+module github.com/Takumi-666/ToDoList-Server/backend
 
 go 1.20
 

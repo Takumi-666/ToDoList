@@ -4,7 +4,7 @@ package router
 import (
 	"net/http"
 
-	"github.com/Takumi-666/ToDoList-Server/model"
+	"github.com/Takumi-666/ToDoList-Server/backend/model"
 	"github.com/google/uuid"
 
 	"github.com/labstack/echo/v4"
@@ -87,25 +87,5 @@ func DeleteTaskHandler(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, "Bad Request")
 	}
 	return c.NoContent(http.StatusOK)
-}
-
-
-
-// 新しいエンドポイント /api/goals のハンドラ
-func SetGoalHandler(c echo.Context) error {
-	// クライアントから送信されたデータを取得
-	var req Goal
-	if err := c.Bind(&req); err != nil {
-		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid request data"})
-	}
-
-	// データベースに目標を保存
-	err := SaveGoalToDatabase(req)
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to save goal to the database"})
-	}
-
-	// 成功時のレスポンス
-	return c.JSON(http.StatusOK, map[string]string{"message": "Goal set successfully"})
 }
 

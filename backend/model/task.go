@@ -63,4 +63,3 @@ func DeleteTask(taskID uuid.UUID) error {
 	err := db.Where("id = ?", taskID).Delete(&Task{}).Error
 	return err
 }
-

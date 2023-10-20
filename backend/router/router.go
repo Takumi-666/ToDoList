@@ -22,7 +22,6 @@ func SetRouter(e *echo.Echo) error {
 	// APIを書く場所
 	e.GET("/api/tasks", GetTasksHandler)
 	e.POST("/api/tasks", AddTaskHandler) 
-	e.POST("/api/goals", SetGoalHandler)
     e.PUT("/api/tasks/:taskID", ChangeFinishedTaskHandler)  
     e.DELETE("/api/tasks/:taskID", DeleteTaskHandler) 
 
