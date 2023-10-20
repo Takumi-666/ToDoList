@@ -12,6 +12,8 @@ type Task struct {
 	Finished bool
 }
 
+
+
 // 関数GetTasksは、引数はなく、戻り値は[]Task型（Task型のスライス）とerror型である
 func GetTasks() ([]Task, error) {
 
@@ -61,3 +63,4 @@ func DeleteTask(taskID uuid.UUID) error {
 	err := db.Where("id = ?", taskID).Delete(&Task{}).Error
 	return err
 }
+

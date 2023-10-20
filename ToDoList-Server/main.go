@@ -11,4 +11,10 @@ func main() {
 	defer sqlDB.Close()
 	e := echo.New()
 	router.SetRouter(e)
+    // Goalテーブルを作成
+    model.CreateTable(model.GetDBInstance())
+
+    e.Start(":8000")
+	
+	
 }

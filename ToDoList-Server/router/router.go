@@ -5,8 +5,6 @@ import (
 
 	"github.com/labstack/echo/v4/middleware"
 
-	_ "net/http"
-
 	"github.com/labstack/echo/v4"
 )
 
@@ -24,6 +22,7 @@ func SetRouter(e *echo.Echo) error {
 	// APIを書く場所
 	e.GET("/api/tasks", GetTasksHandler)
 	e.POST("/api/tasks", AddTaskHandler) 
+	e.POST("/api/goals", SetGoalHandler)
     e.PUT("/api/tasks/:taskID", ChangeFinishedTaskHandler)  
     e.DELETE("/api/tasks/:taskID", DeleteTaskHandler) 
 

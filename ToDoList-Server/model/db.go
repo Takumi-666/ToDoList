@@ -7,9 +7,17 @@ import (
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/google/uuid"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
+// Goal型は目標を表す
+type Goal struct {
+	ID          uuid.UUID `json:"id"`
+	Date        string    `json:"date"`
+	Exercise    string    `json:"exercise"`
+	Repetitions int       `json:"repetitions"`
+}
 
 var db *gorm.DB
 
@@ -43,5 +51,14 @@ func GetDBConfig() string {
 
 // Task型のテーブルを作成する
 func CreateTable(db *gorm.DB) {
-	db.AutoMigrate(&Task{})
+	db.AutoMigrate(&Goal{})
+}
+
+// SaveGoalToDatabase は目標をデータベースに保存します
+func SaveGoalToDatabase(goal Goal) error {
+    // データベースに目標を保存するロジックを実装
+    if err := db.Create(&goal).Error; err != nil {
+        return err
+    }
+    return nil
 }
