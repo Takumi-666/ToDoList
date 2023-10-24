@@ -1,3 +1,5 @@
+//model/task.go
+
 package model
 
 import (
@@ -5,11 +7,12 @@ import (
 	_ "gorm.io/gorm"
 )
 
-// Task型はuuid.UUID型のID、文字列のNameとbool値のFinishedをパラメーターとして持つ
+// Task型は目標データを表す
 type Task struct {
-	ID       uuid.UUID
-	Name     string
-	Finished bool
+	ID       	 uuid.UUID
+    Date         string `json:"date"`
+    Exercise     string `json:"exercise"`
+    Repetitions  int    `json:"repetitions"`
 }
 
 
@@ -27,27 +30,25 @@ func GetTasks() ([]Task, error) {
 	return tasks, err
 }
 
-// 関数 AddTask は引数がstring型のnameで、戻り値はTaskのポインターとerror型である (*1)
-func AddTask(name string) (*Task, error) {
+/* 関数 AddTask は新しいタスクをデータベースに追加し、引数として日付（date）、
+エクササイズ（exercise）、回数（repetitions）を受け取ります。*/
+func AddTask(date, exercise string, repetitions int) (*Task, error) {
+    id, err := uuid.NewUUID()
+    if err != nil {
+        return nil, err
+    }
 
-	// 新たなuuidを生成し、これをid、成否をerrとする（*2）
-	id, err := uuid.NewUUID()
-	if err != nil {
-		return nil, err
-	}
+    task := Task{
+        ID:          id,
+        Date:        date,
+        Exercise:    exercise,
+        Repetitions: repetitions,
+    }
 
-	// ID,Name,Finishedにid,name,false を代入したTask型のtaskを定義
-	task := Task{
-		ID:       id,
-		Name:     name,
-		Finished: false,
-	}
-
-	// taskをDBのTaskテーブルに追加。その成否を(ry
-	err = db.Create(&task).Error
-
-	// taskのポインタ と errを返す
-	return &task, err
+    if err := db.Create(&task).Error; err != nil {
+        return nil, err
+    }
+    return &task, nil
 }
 
 // 関数 ChangeFinishedTaskの引数はuuid.UUID型のtaskIDで、戻り値はerror型である

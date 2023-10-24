@@ -1,3 +1,4 @@
+//model/db.go
 package model
 
 import (

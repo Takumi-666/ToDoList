@@ -20,4 +20,7 @@ phpmyadmin
 
 
 #mysql
-ToDoList-Server/mysql/data/*
+backend/mysql/data/*
+
+#node_modules
+node_modules/

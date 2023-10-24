@@ -1,8 +1,9 @@
+//main.go
 package main
 
 import (
-	"github.com/Takumi-666/ToDoList-Server/backend/model"
-	"github.com/Takumi-666/ToDoList-Server/backend/router"
+	"backend/model"
+	"backend/router"
     "github.com/labstack/echo/v4"
 )
 

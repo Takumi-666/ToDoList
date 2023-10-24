@@ -1,11 +1,10 @@
-//task.go
 package router
 
 // 使用するライブラリをimport
 import (
 	"net/http"
 
-	"github.com/Takumi-666/ToDoList-Server/backend/model"
+	"backend/model"
 	"github.com/google/uuid"
 
 	"github.com/labstack/echo/v4"
@@ -46,7 +45,7 @@ func AddTaskHandler(c echo.Context) error {
     var task *model.Task
 
     // model(package)のAddTask関数を実行し、戻り値をtask,errと定義
-    task, err := model.AddTask(req.Name)
+    task, err := model.AddTask(req.Name, "", 0)
 
     if err != nil {
         // エラーハンドリング: タスクの追加に失敗した場合
