@@ -1,10 +1,7 @@
 #　目標リスト（ToDoリスト）
 APIの練習用に簡単な目標リストアプリを作りました。
 
-### スクリーンショット
 
-![スクリーンショット](/screenshots/screenshot1.png)
-![スクリーンショット](/screenshots/screenshot2.png)
 
 ###　主な機能　と　今後追加（予定）する機能
 主な機能
@@ -50,6 +47,15 @@ go run main.go
 ```
 npx start
 ```
+
+### デモ動画
+
+[https://youtu.be/rRFJQJTaaYE](https://youtu.be/rRFJQJTaaYE)
+
+### スクリーンショット
+
+![スクリーンショット](/screenshots/screenshot1.png)
+![スクリーンショット](/screenshots/screenshot2.png)
 
 ### 参考資料　
 
