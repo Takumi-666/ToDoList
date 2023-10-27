@@ -1,0 +1,63 @@
+.todoList {
+  display: flex;
+  /* タスク一覧を横並びに */
+  flex-direction: column;
+  /* センター寄せ */
+  align-items: center;
+  margin: 0 auto;
+  max-width: 800px; /* 最大幅を設定 */
+  padding: 16px;
+}
+
+.title {
+  font-size: 24px;
+  color: #007bff; /* 鮮やかな青色 */
+  margin-bottom: 16px;
+}
+
+ul {
+  padding: 0;
+  width: 100%; /* 幅を100%に拡張 */
+  list-style: none;
+}
+.ul {
+  padding: 16px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  width: 100%;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc; /* 枠線を追加 */
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  background-color: #f9f9f9; /* 背景色を灰色に */
+}
+.input-container {
+  display: flex;
+  width: 50%;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  padding: 8px;
+}
+.button {
+  background-color: #007bff; /* ボタンの背景色 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+/* 達成済み目標のスタイル */
+.completed {
+  background-color: #28a745; /* 達成済みの背景色を緑に */
+  color: white;
+}

@@ -20,13 +20,12 @@ func SetRouter(e *echo.Echo) error {
 	e.Use(middleware.CORS())
 
 	// APIを書く場所
-	// APIを書く場所
 	e.GET("/api/tasks", GetTasksHandler)
 	e.POST("/api/tasks", AddTaskHandler) 
     e.PUT("/api/tasks/:taskID", ChangeFinishedTaskHandler)  
     e.DELETE("/api/tasks/:taskID", DeleteTaskHandler) 
 
-	// 8000番のポートを開く(*2)
+	// 8000番のポートを開く
 	err := e.Start(":8000")
 	return err
 }

@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   server:
@@ -22,7 +22,7 @@ services:
       - mysql
 
   mysql:
-    image: mysql:latest
+    image: mysql:8.0
     container_name: mysql
     restart: always
     environment:

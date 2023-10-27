@@ -1,5 +1,3 @@
-//model/task.go
-
 package model
 
 import (
@@ -7,15 +5,12 @@ import (
 	_ "gorm.io/gorm"
 )
 
-// Task型は目標データを表す
+// Task型はuuid.UUID型のID、文字列のNameとbool値のFinishedをパラメーターとして持つ
 type Task struct {
-	ID       	 uuid.UUID
-    Date         string `json:"date"`
-    Exercise     string `json:"exercise"`
-    Repetitions  int    `json:"repetitions"`
+	ID       uuid.UUID
+	Name     string
+	Finished bool
 }
-
-
 
 // 関数GetTasksは、引数はなく、戻り値は[]Task型（Task型のスライス）とerror型である
 func GetTasks() ([]Task, error) {
@@ -23,38 +18,40 @@ func GetTasks() ([]Task, error) {
 	// 空のタスクのスライスである、tasksを定義する
 	var tasks []Task
 
-	// tasksにDBのタスク全てを代入する。その操作の成否をerrと定義する(*5)
+	// tasksにDBのタスク全てを代入する。その操作の成否をerrと定義する
 	err := db.Find(&tasks).Error
 
 	// tasksとerrを返す
 	return tasks, err
 }
 
-/* 関数 AddTask は新しいタスクをデータベースに追加し、引数として日付（date）、
-エクササイズ（exercise）、回数（repetitions）を受け取ります。*/
-func AddTask(date, exercise string, repetitions int) (*Task, error) {
-    id, err := uuid.NewUUID()
-    if err != nil {
-        return nil, err
-    }
+// 関数 AddTask は引数がstring型のnameで、戻り値はTaskのポインターとerror型である 
+func AddTask(name string) (*Task, error) {
 
-    task := Task{
-        ID:          id,
-        Date:        date,
-        Exercise:    exercise,
-        Repetitions: repetitions,
-    }
+	// 新たなuuidを生成し、これをid、成否をerrとする
+	id, err := uuid.NewUUID()
+	if err != nil {
+		return nil, err
+	}
 
-    if err := db.Create(&task).Error; err != nil {
-        return nil, err
-    }
-    return &task, nil
+	// ID,Name,Finishedにid,name,false を代入したTask型のtaskを定義
+	task := Task{
+		ID:       id,
+		Name:     name,
+		Finished: false,
+	}
+
+	// taskをDBのTaskテーブルに追加。
+	err = db.Create(&task).Error
+
+	// taskのポインタ と errを返す
+	return &task, err
 }
 
 // 関数 ChangeFinishedTaskの引数はuuid.UUID型のtaskIDで、戻り値はerror型である
 func ChangeFinishedTask(taskID uuid.UUID) error {
 
-	// DBのTaskテーブルからtaskIDと一致するidを探し、そのFinishedをtureにする(*3)
+	// DBのTaskテーブルからtaskIDと一致するidを探し、そのFinishedをtureにする
 	err := db.Model(&Task{}).Where("id = ?", taskID).Update("finished", true).Error
 	return err
 }
