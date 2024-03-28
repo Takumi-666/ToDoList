@@ -58,8 +58,6 @@ https://github.com/Takumi-666/ToDoList/assets/108921895/31245e0a-5ae9-4dbf-8c72-
 
 
 
-[https://youtu.be/rRFJQJTaaYE](https://youtu.be/rRFJQJTaaYE)
-
 ### スクリーンショット
 
 ![スクリーンショット](/screenshots/screenshot1.png)
